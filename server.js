@@ -3,7 +3,7 @@ var path = require('path');
 var app = express();
 var isProduction = process.env.NODE_ENV === 'production';
 var port = isProduction ? process.env.PORT : 3000;
-var publicPath = path.resolve(__dirname, 'public');
+var publicPath = path.resolve(__dirname, '');
 
 // We point to our static assets
 app.use(express.static(publicPath));
@@ -14,8 +14,7 @@ if (!isProduction) {
   var proxy = httpProxy.createProxyServer();
 
   // We require the bundler inside the if block because
-  // it is only needed in a development environment. Later
-  // you will see why this is a good idea
+  // it is only needed in a development environment.
   var bundle = require('./server/bundle.js');
   bundle();
 
